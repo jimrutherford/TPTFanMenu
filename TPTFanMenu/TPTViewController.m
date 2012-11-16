@@ -16,6 +16,7 @@
 @implementation TPTViewController
 
 @synthesize pin_1;
+@synthesize pin_2;
 
 - (void)viewDidLoad
 {
@@ -25,9 +26,16 @@
     pin_1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pin_1"]];
     [self.view addSubview:pin_1];
     pin_1.layer.position = CGPointMake(self.view.center.x, self.view.center.y);
+	pin_1.layer.transform = CATransform3DMakeScale(.01, .01, .1);
     pin_1.layer.anchorPoint = CGPointMake(0.5,1);
-    pin_1.layer.opacity = 0;
 
+	pin_2 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pin_2"]];
+    [self.view addSubview:pin_2];
+    pin_2.layer.position = CGPointMake(self.view.center.x, self.view.center.y);
+	pin_2.layer.transform = CATransform3DMakeScale(.01, .01, .1);
+    pin_2.layer.anchorPoint = CGPointMake(0.5,1);
+    //pin_2.layer.opacity = 0;
+	
 }
 
 - (void)didReceiveMemoryWarning
@@ -39,25 +47,25 @@
 
 
 - (IBAction)goButton:(id)sender {
-
-    pin_1.layer.opacity = 1;
-    [pin_1.layer addAnimation:[self shrinkAnimation] forKey:@"idunno"];
-
+    [pin_1.layer addAnimation:[self shrinkAnimationWithDelay:1] forKey:@"transform"];
+    [pin_2.layer addAnimation:[self shrinkAnimationWithDelay:2] forKey:@"transform"];
 }
 
 
-- (CAAnimationGroup *)shrinkAnimation
+- (CAAnimationGroup *)shrinkAnimationWithDelay:(int)delay
 {
-
-    CABasicAnimation *scaleAnimation = [CABasicAnimation animationWithKeyPath:@"transform"];
+	CGFloat startOffset = 0.1f;
+	
+	CABasicAnimation *scaleAnimation = [CABasicAnimation animationWithKeyPath:@"transform"];
     scaleAnimation.fromValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(.01, .01, .1)];
     scaleAnimation.toValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(1, 1, 1)];
 
     CAAnimationGroup *animationgroup = [CAAnimationGroup animation];
     animationgroup.animations = [NSArray arrayWithObjects:scaleAnimation, nil];
-    animationgroup.duration = 0.2f;
+    animationgroup.duration = 0.3f;
+	animationgroup.beginTime = CACurrentMediaTime() + ((delay - 1) * startOffset);
     animationgroup.fillMode = kCAFillModeForwards;
-
+	animationgroup.removedOnCompletion = NO;
     return animationgroup;
 }
 

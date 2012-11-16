@@ -73,7 +73,6 @@
 		370660D31645CCBC002419F6 = {
 			isa = PBXGroup;
 			children = (
-				370661141645D271002419F6 /* QuartzCore.framework */,
 				370660E81645CCBC002419F6 /* TPTFanMenu */,
 				370660E11645CCBC002419F6 /* Frameworks */,
 				370660DF1645CCBC002419F6 /* Products */,
@@ -91,6 +90,7 @@
 		370660E11645CCBC002419F6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				370661141645D271002419F6 /* QuartzCore.framework */,
 				370660E21645CCBC002419F6 /* UIKit.framework */,
 				370660E41645CCBC002419F6 /* Foundation.framework */,
 				370660E61645CCBC002419F6 /* CoreGraphics.framework */,

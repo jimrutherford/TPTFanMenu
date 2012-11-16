@@ -12,6 +12,7 @@
 
 
 @property UIImageView *pin_1;
+@property UIImageView *pin_2;
 
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImage;
 

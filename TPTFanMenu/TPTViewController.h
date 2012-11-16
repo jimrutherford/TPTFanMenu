@@ -14,6 +14,8 @@
 @property UIImageView *pin_1;
 @property UIImageView *pin_2;
 
+@property NSArray * pins;
+
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImage;
 
 @end

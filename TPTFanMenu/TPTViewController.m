@@ -17,25 +17,29 @@
 
 @synthesize pin_1;
 @synthesize pin_2;
+@synthesize pins;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
-
+	
     pin_1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pin_1"]];
-    [self.view addSubview:pin_1];
     pin_1.layer.position = CGPointMake(self.view.center.x, self.view.center.y);
 	pin_1.layer.transform = CATransform3DMakeScale(.01, .01, .1);
     pin_1.layer.anchorPoint = CGPointMake(0.5,1);
 
 	pin_2 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pin_2"]];
-    [self.view addSubview:pin_2];
     pin_2.layer.position = CGPointMake(self.view.center.x, self.view.center.y);
 	pin_2.layer.transform = CATransform3DMakeScale(.01, .01, .1);
     pin_2.layer.anchorPoint = CGPointMake(0.5,1);
-    //pin_2.layer.opacity = 0;
 	
+	pins = [[NSArray alloc] initWithObjects:pin_1, pin_2, nil];
+	
+	for (UIImageView* pin in pins)
+	{
+		[self.view addSubview:pin];
+	}
 }
 
 - (void)didReceiveMemoryWarning
@@ -47,8 +51,11 @@
 
 
 - (IBAction)goButton:(id)sender {
-    [pin_1.layer addAnimation:[self shrinkAnimationWithDelay:1] forKey:@"transform"];
-    [pin_2.layer addAnimation:[self shrinkAnimationWithDelay:2] forKey:@"transform"];
+	for (UIImageView* pin in pins)
+	{
+		[pin.layer addAnimation:[self shrinkAnimationWithDelay:1] forKey:@"transform"];
+	}
+	
 }
 
 

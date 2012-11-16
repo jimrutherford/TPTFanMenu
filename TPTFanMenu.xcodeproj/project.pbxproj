@@ -18,7 +18,6 @@
 		37F37DAD1656AB0000449915 /* pin_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 37F37DA11656AB0000449915 /* pin_3.png */; };
 		37F37DAE1656AB0000449915 /* pin_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 37F37DA21656AB0000449915 /* pin_4.png */; };
 		37F37DAF1656AB0000449915 /* TPTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F37DA41656AB0000449915 /* TPTAppDelegate.m */; };
-		37F37DB01656AB0000449915 /* TPTFanMenu-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 37F37DA51656AB0000449915 /* TPTFanMenu-Info.plist */; };
 		37F37DB11656AB0000449915 /* TPTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F37DA81656AB0000449915 /* TPTViewController.m */; };
 		37F37DB81656ABD200449915 /* Default-568h.png in Resources */ = {isa = PBXBuildFile; fileRef = 37F37DB31656ABD200449915 /* Default-568h.png */; };
 		37F37DB91656ABD200449915 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37F37DB41656ABD200449915 /* Default-568h@2x.png */; };
@@ -209,7 +208,6 @@
 				37F37DAC1656AB0000449915 /* pin_2.png in Resources */,
 				37F37DAD1656AB0000449915 /* pin_3.png in Resources */,
 				37F37DAE1656AB0000449915 /* pin_4.png in Resources */,
-				37F37DB01656AB0000449915 /* TPTFanMenu-Info.plist in Resources */,
 				37F37DB81656ABD200449915 /* Default-568h.png in Resources */,
 				37F37DB91656ABD200449915 /* Default-568h@2x.png in Resources */,
 				37F37DBA1656ABD200449915 /* Default.png in Resources */,

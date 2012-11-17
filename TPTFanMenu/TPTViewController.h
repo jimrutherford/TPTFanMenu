@@ -10,11 +10,9 @@
 
 @interface TPTViewController : UIViewController
 
+@property int totalPins;
 
-@property UIImageView *pin_1;
-@property UIImageView *pin_2;
-
-@property NSArray * pins;
+@property NSMutableArray * pins;
 
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImage;
 

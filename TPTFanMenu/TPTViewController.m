@@ -15,31 +15,28 @@
 
 @implementation TPTViewController
 
-@synthesize pin_1;
-@synthesize pin_2;
 @synthesize pins;
+@synthesize totalPins;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
+	totalPins = 4;
+	pins = [[NSMutableArray alloc] init];
 	
-    pin_1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pin_1"]];
-    pin_1.layer.position = CGPointMake(self.view.center.x, self.view.center.y);
-	pin_1.layer.transform = CATransform3DMakeScale(.01, .01, .1);
-    pin_1.layer.anchorPoint = CGPointMake(0.5,1);
-
-	pin_2 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pin_2"]];
-    pin_2.layer.position = CGPointMake(self.view.center.x, self.view.center.y);
-	pin_2.layer.transform = CATransform3DMakeScale(.01, .01, .1);
-    pin_2.layer.anchorPoint = CGPointMake(0.5,1);
-	
-	pins = [[NSArray alloc] initWithObjects:pin_1, pin_2, nil];
-	
-	for (UIImageView* pin in pins)
+	for (int i = 0; i < totalPins; i++)
 	{
+		NSString* pinName = [NSString stringWithFormat:@"pin_%i", i+1];
+		NSLog(@"%@", pinName);
+		UIImageView * pin = [[UIImageView alloc] initWithImage:[UIImage imageNamed:pinName]];
+		pin.layer.position = CGPointMake(self.view.center.x, self.view.center.y);
+		pin.layer.transform = CATransform3DMakeScale(.01, .01, .1);
+		pin.layer.anchorPoint = CGPointMake(0.5,1);
+		[pins addObject:pin];
 		[self.view addSubview:pin];
 	}
+	
 }
 
 - (void)didReceiveMemoryWarning
@@ -51,9 +48,11 @@
 
 
 - (IBAction)goButton:(id)sender {
-	for (UIImageView* pin in pins)
+	for (int i = 0; i < totalPins; i++)
 	{
-		[pin.layer addAnimation:[self shrinkAnimationWithDelay:1] forKey:@"transform"];
+		NSLog(@"%i", i);
+		UIImageView * pin = [pins objectAtIndex:i];
+		[pin.layer addAnimation:[self shrinkAnimationWithDelay:i] forKey:@"transform"];
 	}
 	
 }
@@ -70,7 +69,7 @@
     CAAnimationGroup *animationgroup = [CAAnimationGroup animation];
     animationgroup.animations = [NSArray arrayWithObjects:scaleAnimation, nil];
     animationgroup.duration = 0.3f;
-	animationgroup.beginTime = CACurrentMediaTime() + ((delay - 1) * startOffset);
+	animationgroup.beginTime = CACurrentMediaTime() + (delay * startOffset);
     animationgroup.fillMode = kCAFillModeForwards;
 	animationgroup.removedOnCompletion = NO;
     return animationgroup;

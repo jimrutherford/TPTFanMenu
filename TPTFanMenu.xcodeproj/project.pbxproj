@@ -11,12 +11,12 @@
 		370660E51645CCBC002419F6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 370660E41645CCBC002419F6 /* Foundation.framework */; };
 		370660E71645CCBC002419F6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 370660E61645CCBC002419F6 /* CoreGraphics.framework */; };
 		370661151645D271002419F6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 370661141645D271002419F6 /* QuartzCore.framework */; };
+		37E2F7A31658759700A4CBCE /* pin_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37E2F79F1658759700A4CBCE /* pin_1@2x.png */; };
+		37E2F7A41658759700A4CBCE /* pin_2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37E2F7A01658759700A4CBCE /* pin_2@2x.png */; };
+		37E2F7A51658759700A4CBCE /* pin_3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37E2F7A11658759700A4CBCE /* pin_3@2x.png */; };
+		37E2F7A61658759700A4CBCE /* pin_4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37E2F7A21658759700A4CBCE /* pin_4@2x.png */; };
 		37F37DA91656AB0000449915 /* appBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 37F37D9D1656AB0000449915 /* appBackground.png */; };
 		37F37DAA1656AB0000449915 /* appBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37F37D9E1656AB0000449915 /* appBackground@2x.png */; };
-		37F37DAB1656AB0000449915 /* pin_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 37F37D9F1656AB0000449915 /* pin_1.png */; };
-		37F37DAC1656AB0000449915 /* pin_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 37F37DA01656AB0000449915 /* pin_2.png */; };
-		37F37DAD1656AB0000449915 /* pin_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 37F37DA11656AB0000449915 /* pin_3.png */; };
-		37F37DAE1656AB0000449915 /* pin_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 37F37DA21656AB0000449915 /* pin_4.png */; };
 		37F37DAF1656AB0000449915 /* TPTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F37DA41656AB0000449915 /* TPTAppDelegate.m */; };
 		37F37DB11656AB0000449915 /* TPTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F37DA81656AB0000449915 /* TPTViewController.m */; };
 		37F37DB81656ABD200449915 /* Default-568h.png in Resources */ = {isa = PBXBuildFile; fileRef = 37F37DB31656ABD200449915 /* Default-568h.png */; };
@@ -34,12 +34,12 @@
 		370660E41645CCBC002419F6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		370660E61645CCBC002419F6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		370661141645D271002419F6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		37E2F79F1658759700A4CBCE /* pin_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pin_1@2x.png"; path = "TPTFanMenu/pin_1@2x.png"; sourceTree = SOURCE_ROOT; };
+		37E2F7A01658759700A4CBCE /* pin_2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pin_2@2x.png"; path = "TPTFanMenu/pin_2@2x.png"; sourceTree = SOURCE_ROOT; };
+		37E2F7A11658759700A4CBCE /* pin_3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pin_3@2x.png"; path = "TPTFanMenu/pin_3@2x.png"; sourceTree = SOURCE_ROOT; };
+		37E2F7A21658759700A4CBCE /* pin_4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pin_4@2x.png"; path = "TPTFanMenu/pin_4@2x.png"; sourceTree = SOURCE_ROOT; };
 		37F37D9D1656AB0000449915 /* appBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = appBackground.png; path = TPTFanMenu/appBackground.png; sourceTree = SOURCE_ROOT; };
 		37F37D9E1656AB0000449915 /* appBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "appBackground@2x.png"; path = "TPTFanMenu/appBackground@2x.png"; sourceTree = SOURCE_ROOT; };
-		37F37D9F1656AB0000449915 /* pin_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pin_1.png; path = TPTFanMenu/pin_1.png; sourceTree = SOURCE_ROOT; };
-		37F37DA01656AB0000449915 /* pin_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pin_2.png; path = TPTFanMenu/pin_2.png; sourceTree = SOURCE_ROOT; };
-		37F37DA11656AB0000449915 /* pin_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pin_3.png; path = TPTFanMenu/pin_3.png; sourceTree = SOURCE_ROOT; };
-		37F37DA21656AB0000449915 /* pin_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pin_4.png; path = TPTFanMenu/pin_4.png; sourceTree = SOURCE_ROOT; };
 		37F37DA31656AB0000449915 /* TPTAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TPTAppDelegate.h; path = TPTFanMenu/TPTAppDelegate.h; sourceTree = SOURCE_ROOT; };
 		37F37DA41656AB0000449915 /* TPTAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TPTAppDelegate.m; path = TPTFanMenu/TPTAppDelegate.m; sourceTree = SOURCE_ROOT; };
 		37F37DA51656AB0000449915 /* TPTFanMenu-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "TPTFanMenu-Info.plist"; path = "TPTFanMenu/TPTFanMenu-Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -132,10 +132,6 @@
 				37F37DBD1656AC1A00449915 /* en.lproj */,
 				37F37D9D1656AB0000449915 /* appBackground.png */,
 				37F37D9E1656AB0000449915 /* appBackground@2x.png */,
-				37F37D9F1656AB0000449915 /* pin_1.png */,
-				37F37DA01656AB0000449915 /* pin_2.png */,
-				37F37DA11656AB0000449915 /* pin_3.png */,
-				37F37DA21656AB0000449915 /* pin_4.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -143,6 +139,10 @@
 		37F37DBD1656AC1A00449915 /* en.lproj */ = {
 			isa = PBXGroup;
 			children = (
+				37E2F79F1658759700A4CBCE /* pin_1@2x.png */,
+				37E2F7A01658759700A4CBCE /* pin_2@2x.png */,
+				37E2F7A11658759700A4CBCE /* pin_3@2x.png */,
+				37E2F7A21658759700A4CBCE /* pin_4@2x.png */,
 				37F37DBE1656AC1A00449915 /* InfoPlist.strings */,
 				37F37DC01656AC1A00449915 /* TPTViewController.xib */,
 			);
@@ -204,16 +204,16 @@
 			files = (
 				37F37DA91656AB0000449915 /* appBackground.png in Resources */,
 				37F37DAA1656AB0000449915 /* appBackground@2x.png in Resources */,
-				37F37DAB1656AB0000449915 /* pin_1.png in Resources */,
-				37F37DAC1656AB0000449915 /* pin_2.png in Resources */,
-				37F37DAD1656AB0000449915 /* pin_3.png in Resources */,
-				37F37DAE1656AB0000449915 /* pin_4.png in Resources */,
 				37F37DB81656ABD200449915 /* Default-568h.png in Resources */,
 				37F37DB91656ABD200449915 /* Default-568h@2x.png in Resources */,
 				37F37DBA1656ABD200449915 /* Default.png in Resources */,
 				37F37DBB1656ABD200449915 /* Default@2x.png in Resources */,
 				37F37DC21656AC1A00449915 /* InfoPlist.strings in Resources */,
 				37F37DC31656AC1A00449915 /* TPTViewController.xib in Resources */,
+				37E2F7A31658759700A4CBCE /* pin_1@2x.png in Resources */,
+				37E2F7A41658759700A4CBCE /* pin_2@2x.png in Resources */,
+				37E2F7A51658759700A4CBCE /* pin_3@2x.png in Resources */,
+				37E2F7A61658759700A4CBCE /* pin_4@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

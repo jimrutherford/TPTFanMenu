@@ -15,6 +15,7 @@
 		37E2F7A41658759700A4CBCE /* pin_2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37E2F7A01658759700A4CBCE /* pin_2@2x.png */; };
 		37E2F7A51658759700A4CBCE /* pin_3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37E2F7A11658759700A4CBCE /* pin_3@2x.png */; };
 		37E2F7A61658759700A4CBCE /* pin_4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37E2F7A21658759700A4CBCE /* pin_4@2x.png */; };
+		37E2F7AA16594CE000A4CBCE /* TPTFanMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E2F7A916594CE000A4CBCE /* TPTFanMenu.m */; };
 		37F37DA91656AB0000449915 /* appBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 37F37D9D1656AB0000449915 /* appBackground.png */; };
 		37F37DAA1656AB0000449915 /* appBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37F37D9E1656AB0000449915 /* appBackground@2x.png */; };
 		37F37DAF1656AB0000449915 /* TPTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F37DA41656AB0000449915 /* TPTAppDelegate.m */; };
@@ -38,6 +39,8 @@
 		37E2F7A01658759700A4CBCE /* pin_2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pin_2@2x.png"; path = "TPTFanMenu/pin_2@2x.png"; sourceTree = SOURCE_ROOT; };
 		37E2F7A11658759700A4CBCE /* pin_3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pin_3@2x.png"; path = "TPTFanMenu/pin_3@2x.png"; sourceTree = SOURCE_ROOT; };
 		37E2F7A21658759700A4CBCE /* pin_4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pin_4@2x.png"; path = "TPTFanMenu/pin_4@2x.png"; sourceTree = SOURCE_ROOT; };
+		37E2F7A816594CE000A4CBCE /* TPTFanMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPTFanMenu.h; sourceTree = SOURCE_ROOT; };
+		37E2F7A916594CE000A4CBCE /* TPTFanMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPTFanMenu.m; sourceTree = SOURCE_ROOT; };
 		37F37D9D1656AB0000449915 /* appBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = appBackground.png; path = TPTFanMenu/appBackground.png; sourceTree = SOURCE_ROOT; };
 		37F37D9E1656AB0000449915 /* appBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "appBackground@2x.png"; path = "TPTFanMenu/appBackground@2x.png"; sourceTree = SOURCE_ROOT; };
 		37F37DA31656AB0000449915 /* TPTAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TPTAppDelegate.h; path = TPTFanMenu/TPTAppDelegate.h; sourceTree = SOURCE_ROOT; };
@@ -101,6 +104,7 @@
 		370660E81645CCBC002419F6 /* TPTFanMenu */ = {
 			isa = PBXGroup;
 			children = (
+				37E2F7A716594CBF00A4CBCE /* Control */,
 				37F37DA31656AB0000449915 /* TPTAppDelegate.h */,
 				37F37DA41656AB0000449915 /* TPTAppDelegate.m */,
 				37F37DA71656AB0000449915 /* TPTViewController.h */,
@@ -129,6 +133,10 @@
 		3706610D1645CD5F002419F6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				37E2F79F1658759700A4CBCE /* pin_1@2x.png */,
+				37E2F7A01658759700A4CBCE /* pin_2@2x.png */,
+				37E2F7A11658759700A4CBCE /* pin_3@2x.png */,
+				37E2F7A21658759700A4CBCE /* pin_4@2x.png */,
 				37F37DBD1656AC1A00449915 /* en.lproj */,
 				37F37D9D1656AB0000449915 /* appBackground.png */,
 				37F37D9E1656AB0000449915 /* appBackground@2x.png */,
@@ -136,13 +144,18 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		37E2F7A716594CBF00A4CBCE /* Control */ = {
+			isa = PBXGroup;
+			children = (
+				37E2F7A816594CE000A4CBCE /* TPTFanMenu.h */,
+				37E2F7A916594CE000A4CBCE /* TPTFanMenu.m */,
+			);
+			name = Control;
+			sourceTree = "<group>";
+		};
 		37F37DBD1656AC1A00449915 /* en.lproj */ = {
 			isa = PBXGroup;
 			children = (
-				37E2F79F1658759700A4CBCE /* pin_1@2x.png */,
-				37E2F7A01658759700A4CBCE /* pin_2@2x.png */,
-				37E2F7A11658759700A4CBCE /* pin_3@2x.png */,
-				37E2F7A21658759700A4CBCE /* pin_4@2x.png */,
 				37F37DBE1656AC1A00449915 /* InfoPlist.strings */,
 				37F37DC01656AC1A00449915 /* TPTViewController.xib */,
 			);
@@ -227,6 +240,7 @@
 				37F37DAF1656AB0000449915 /* TPTAppDelegate.m in Sources */,
 				37F37DB11656AB0000449915 /* TPTViewController.m in Sources */,
 				37F37DBC1656ABD200449915 /* main.m in Sources */,
+				37E2F7AA16594CE000A4CBCE /* TPTFanMenu.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

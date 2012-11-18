@@ -7,13 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <QuartzCore/QuartzCore.h>
+#import	"TPTFanMenu.h"
 
-@interface TPTViewController : UIViewController
+@interface TPTViewController : UIViewController<UIGestureRecognizerDelegate>
 
-@property int totalPins;
-
-@property NSMutableArray * pins;
+@property TPTFanMenu *fanMenu;
 
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImage;
 

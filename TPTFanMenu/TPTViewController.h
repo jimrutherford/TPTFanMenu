@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import	"TPTFanMenu.h"
+#import "TPTFanMenuDelegate.h"
 
 @interface TPTViewController : UIViewController<UIGestureRecognizerDelegate>
 

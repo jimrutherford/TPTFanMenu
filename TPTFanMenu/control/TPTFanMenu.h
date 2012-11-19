@@ -11,10 +11,12 @@
 
 @interface TPTFanMenu : UIView
 
+@property bool isMenuVisible;
 @property int totalPins;
 
 @property NSMutableArray * pins;
 
 - (void) showMenu:(id)sender;
+- (void) hideMenu:(id)sender;
 
 @end

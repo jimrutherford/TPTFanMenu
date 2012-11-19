@@ -8,7 +8,6 @@
 
 #import "TPTViewController.h"
 
-
 @interface TPTViewController ()
 
 @end
@@ -21,30 +20,37 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	NSLog(@"here");
 	UILongPressGestureRecognizer *longPressRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self
 																										action:@selector(handleLongPress:)];
-    [longPressRecognizer setMinimumPressDuration:2];
+    [longPressRecognizer setMinimumPressDuration:1];
     [longPressRecognizer setDelegate:self];
     [self.view addGestureRecognizer:longPressRecognizer];
 	
-	fanMenu = [[TPTFanMenu alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-	
+	fanMenu = [[TPTFanMenu alloc] init];
 	[self.view addSubview:fanMenu];
 	
+	UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+	[tapRecognizer setDelegate:self];
+	[self.view addGestureRecognizer:tapRecognizer];
 	
 }
 
-- (void)handleLongPress:(UILongPressGestureRecognizer *)recognizer
+- (void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer
 {
-    if (recognizer.state == UIGestureRecognizerStateEnded) {
-        NSLog(@"Long press Ended .................");
-		
+    if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
+		CGPoint coords = [gestureRecognizer locationInView:gestureRecognizer.view];
+		[fanMenu setCenter:coords];
+		[fanMenu showMenu:gestureRecognizer.view];
     }
-    else {
-        NSLog(@"Long press detected .....................");
-		[fanMenu showMenu:recognizer.view];
-    }
+}
+
+
+- (void)handleTap:(UITapGestureRecognizer *)gestureRecognizer
+{
+    if (fanMenu.isMenuVisible)
+	{
+		[fanMenu hideMenu:gestureRecognizer.view];
+	}
 }
 
 - (void)didReceiveMemoryWarning

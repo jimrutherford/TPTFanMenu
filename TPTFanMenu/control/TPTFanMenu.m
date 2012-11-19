@@ -14,7 +14,8 @@
 @implementation TPTFanMenu
 
 @synthesize pins;
-@synthesize totalPins;
+@synthesize menuItemImages;
+
 @synthesize isMenuVisible;
 
 bool isMenuGrowing;
@@ -37,14 +38,11 @@ typedef enum
 
 - (void) drawPins
 {
-	totalPins = 4;
 	pins = [[NSMutableArray alloc] init];
 	
-	for (int i = 0; i < totalPins; i++)
+	for (int i = 0; i < [menuItemImages count]; i++)
 	{
-		NSString* pinName = [NSString stringWithFormat:@"pin_%i", i+1];
-		NSLog(@"%@", pinName);
-		UIImageView * pin = [[UIImageView alloc] initWithImage:[UIImage imageNamed:pinName]];
+		UIImageView * pin = [[UIImageView alloc] initWithImage:[menuItemImages objectAtIndex:i]];
 		pin.layer.position = CGPointMake(self.center.x, self.center.y);
 		pin.layer.transform = CATransform3DMakeScale(.01, .01, .1);
 		pin.layer.anchorPoint = CGPointMake(0.5,1);
@@ -75,7 +73,7 @@ typedef enum
 - (void) showMenu:(id)sender {
 	isMenuGrowing = YES;
 	
-	for (int i = 0; i < totalPins; i++)
+	for (int i = 0; i < [menuItemImages count]; i++)
 	{
 		UIImageView * pin = [pins objectAtIndex:i];
 		[pin.layer addAnimation:[self growAnimationWithIndex:i] forKey:@"transform"];
@@ -86,7 +84,7 @@ typedef enum
 - (void) hideMenu:(id)sender {
 	isMenuGrowing = NO;
 	
-	for (int i = 0; i < totalPins; i++)
+	for (int i = 0; i < [menuItemImages count]; i++)
 	{
 		UIImageView * pin = [pins objectAtIndex:i];
 		[pin.layer addAnimation:[self collapsePinsWithIndex:i] forKey:@"transform.rotation.z"];
@@ -128,13 +126,13 @@ typedef enum
 	CABasicAnimation *scaleAnimation = [CABasicAnimation animationWithKeyPath:@"transform"];
     scaleAnimation.fromValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(1, 1, 1)];
     scaleAnimation.toValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(.01, .01, .1)];
-	scaleAnimation.duration = animDuration + (abs(index - totalPins + 1) * startOffset);
+	scaleAnimation.duration = animDuration + (abs(index - [menuItemImages count] + 1) * startOffset);
 	scaleAnimation.removedOnCompletion = NO;
 	scaleAnimation.fillMode = kCAFillModeForwards;
 	
     CAAnimationGroup *animationgroup = [CAAnimationGroup animation];
     animationgroup.animations = [NSArray arrayWithObjects:scaleAnimation, nil];
-    animationgroup.duration = animDuration + (totalPins * startOffset);
+    animationgroup.duration = animDuration + ([menuItemImages count] * startOffset);
 	animationgroup.removedOnCompletion = NO;
 	animationgroup.fillMode = kCAFillModeForwards;
 	return animationgroup;
@@ -199,7 +197,7 @@ typedef enum
 	}
 	else
 	{
-		for (int i = 0; i < totalPins; i++)
+		for (int i = 0; i < [menuItemImages count]; i++)
 		{
 			NSLog(@"shrinking %i", i);
 			UIImageView * pin = [pins objectAtIndex:i];
@@ -286,5 +284,14 @@ typedef enum
 	return animationgroup;
 }
 
+
+#pragma mark -
+#pragma mark Setters/Getters
+
+- (void) setMenuItemImages:(NSArray *)aMenuItemImages
+{
+	menuItemImages = aMenuItemImages;
+	[self drawPins];
+}
 
 @end

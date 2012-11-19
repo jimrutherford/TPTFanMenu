@@ -12,7 +12,8 @@
 @interface TPTFanMenu : UIView
 
 @property bool isMenuVisible;
-@property int totalPins;
+
+@property (nonatomic) NSArray *menuItemImages;
 
 @property NSMutableArray * pins;
 

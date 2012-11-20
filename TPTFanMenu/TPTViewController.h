@@ -10,7 +10,7 @@
 #import	"TPTFanMenu.h"
 #import "TPTFanMenuDelegate.h"
 
-@interface TPTViewController : UIViewController<UIGestureRecognizerDelegate>
+@interface TPTViewController : UIViewController<UIGestureRecognizerDelegate, TPTFanMenuDelegate>
 
 @property TPTFanMenu *fanMenu;
 

@@ -15,53 +15,65 @@
 
 @synthesize pins;
 @synthesize menuItemImages;
+@synthesize delegate;
 
 @synthesize isMenuVisible;
 
 bool isMenuGrowing;
 
-typedef enum 
+- (id)initWithFrame:(CGRect)frame
 {
-	kForwards = 1,
-	kBackwards = -1
-} direction;
-
-
-- (id)init
-{
-    self = [super init];
+    self = [super initWithFrame:frame];
     if (self) {
         [self drawPins];
+		
+		self.userInteractionEnabled = YES;
+		
+		self.layer.shadowColor = [UIColor blackColor].CGColor;
+		self.layer.shadowOffset = CGSizeMake(2, 2);
+		self.layer.shadowRadius = 3;
+		self.layer.shadowOpacity = 0.4f;
+		
+		self.clipsToBounds = NO;
     }
     return self;
 }
+
 
 - (void) drawPins
 {
 	pins = [[NSMutableArray alloc] init];
 	
 	for (int i = 0; i < [menuItemImages count]; i++)
-	{
-		UIImageView * pin = [[UIImageView alloc] initWithImage:[menuItemImages objectAtIndex:i]];
+	{	
+		UIButton *pin = [UIButton buttonWithType:UIButtonTypeCustom];
+        UIImage *pinImage = [menuItemImages objectAtIndex:i];
+		
+		pin.frame = CGRectMake(0,0, pinImage.size.width, pinImage.size.height);
+        [pin setImage:[menuItemImages objectAtIndex:i] forState:UIControlStateNormal];
+		[pin addTarget:self action:@selector(tapMenuItem:) forControlEvents:UIControlEventTouchUpInside];
+		[pin setSelected:NO];
 		pin.layer.position = CGPointMake(self.center.x, self.center.y);
-		pin.layer.transform = CATransform3DMakeScale(.01, .01, .1);
+		pin.layer.transform = CATransform3DMakeScale(0.01, 0.01, 0.01);
 		pin.layer.anchorPoint = CGPointMake(0.5,1);
-		// lets tag this in case we need to inspect it later
+		// lets tag this so we can inspect the index of the tapped menuItem from our delegate method
 		pin.tag = i;
-		
-		pin.layer.shadowColor = [UIColor blackColor].CGColor;
-		pin.layer.shadowOffset = CGSizeMake(2, 2);
-		pin.layer.shadowRadius = 3;
-		pin.layer.shadowOpacity = 0.4f;
-		
-		pin.clipsToBounds = NO;
 		
 		[pins addObject:pin];
 		[self addSubview:pin];
+
 	}
 	isMenuVisible = NO;
 }
 
+- (void)tapMenuItem:(id)sender
+{
+	// fire off delegate method
+	SEL didPressMenuItemSelector = @selector(didPressMenuItem:);
+	if (self.delegate && [self.delegate respondsToSelector:didPressMenuItemSelector]) {
+		[self.delegate didPressMenuItem:(UIButton*)sender];
+	}
+}
 
 /*
 - (void)drawRect:(CGRect)rect
@@ -99,7 +111,6 @@ typedef enum
 	CGFloat startOffset = 0.1f;
 	
 	NSString *animationKeyPath = [NSString stringWithFormat:@"transform%i", index];
-	NSLog(@"animationKeyPath - %@", animationKeyPath);
 	CABasicAnimation *scaleAnimation = [CABasicAnimation animationWithKeyPath:@"transform"];
     scaleAnimation.fromValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(.01, .01, .1)];
     scaleAnimation.toValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(1, 1, 1)];
@@ -152,7 +163,11 @@ typedef enum
 								  [NSNumber numberWithFloat:DEGREES_TO_RADIANS(90)], nil];
 			
 			UIImageView * pin = [pins objectAtIndex:0];
+
+			[CATransaction begin];
 			[pin.layer addAnimation:[self rotationAnimationWithKeyFrames:keyframes] forKey:@"transform.rotation.z"];
+			[CATransaction setCompletionBlock:^(void){pin.layer.transform = CATransform3DMakeRotation(DEGREES_TO_RADIANS(90), 0, 0, 1.0f);}];
+			[CATransaction commit];
 		}
 		
 		if ([value isEqualToString:@"transform1"])
@@ -164,7 +179,11 @@ typedef enum
 								  [NSNumber numberWithFloat:DEGREES_TO_RADIANS(180)], nil];
 			
 			UIImageView * pin = [pins objectAtIndex:1];
+
+			[CATransaction begin];
 			[pin.layer addAnimation:[self rotationAnimationWithKeyFrames:keyframes] forKey:@"transform.rotation.z"];
+			[CATransaction setCompletionBlock:^(void){pin.layer.transform = CATransform3DMakeRotation(DEGREES_TO_RADIANS(180), 0, 0, 1.0f);}];
+			[CATransaction commit];
 		}
 		
 		
@@ -178,7 +197,11 @@ typedef enum
 								  [NSNumber numberWithFloat:DEGREES_TO_RADIANS(270)], nil];
 			
 			UIImageView * pin = [pins objectAtIndex:2];
+
+			[CATransaction begin];
 			[pin.layer addAnimation:[self rotationAnimationWithKeyFrames:keyframes] forKey:@"transform.rotation.z"];
+			[CATransaction setCompletionBlock:^(void){pin.layer.transform = CATransform3DMakeRotation(DEGREES_TO_RADIANS(270), 0, 0, 1.0f);}];
+			[CATransaction commit];
 		}
 		
 		if ([value isEqualToString:@"transform3"])
@@ -192,14 +215,17 @@ typedef enum
 								  [NSNumber numberWithFloat:DEGREES_TO_RADIANS(360)], nil];
 			
 			UIImageView * pin = [pins objectAtIndex:3];
+			
+			[CATransaction begin];
 			[pin.layer addAnimation:[self rotationAnimationWithKeyFrames:keyframes] forKey:@"transform.rotation.z"];
+			[CATransaction setCompletionBlock:^(void){pin.layer.transform = CATransform3DMakeRotation(DEGREES_TO_RADIANS(360), 0, 0, 1.0f);}];
+			[CATransaction commit];
 		}
 	}
 	else
 	{
 		for (int i = 0; i < [menuItemImages count]; i++)
 		{
-			NSLog(@"shrinking %i", i);
 			UIImageView * pin = [pins objectAtIndex:i];
 			[pin.layer addAnimation:[self shrinkAnimationWithIndex:i] forKey:@"transform"];
 		}
@@ -265,14 +291,11 @@ typedef enum
 {
 	CAKeyframeAnimation *rotationAnimation;
 	rotationAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform.rotation.z"];
-	
 	rotationAnimation.values = keyFrames;
 	rotationAnimation.calculationMode = kCAAnimationPaced;
-	
 	rotationAnimation.duration = 0.3f;
 	rotationAnimation.removedOnCompletion = NO;
 	rotationAnimation.fillMode = kCAFillModeForwards;
-	
 	rotationAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
 	
 	CAAnimationGroup *animationgroup = [CAAnimationGroup animation];

@@ -10,6 +10,6 @@
 
 @protocol TPTFanMenuDelegate <NSObject>
 
-- (void) didPressMenuItem:(id)menuItem;
+- (void) didPressMenuItem:(UIButton*)menuItem;
 
 @end

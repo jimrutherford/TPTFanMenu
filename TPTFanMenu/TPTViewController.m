@@ -23,21 +23,28 @@
 	
 	NSArray *menuItems = @[[UIImage imageNamed:@"pin_1"], [UIImage imageNamed:@"pin_2"], [UIImage imageNamed:@"pin_3"], [UIImage imageNamed:@"pin_4"]];
 	
-	fanMenu = [[TPTFanMenu alloc] init];
+	fanMenu = [[TPTFanMenu alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
+	fanMenu.delegate = self;
 	[fanMenu setMenuItemImages:menuItems];
 	[self.view addSubview:fanMenu];
 	
+	
+	[fanMenu setCenter:self.view.center];
+	[fanMenu showMenu:self.view];
+
+	
 	// setup gesture to show the menu - in this example we'll use a longpress
-	UILongPressGestureRecognizer *longPressRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self
-																										action:@selector(handleLongPress:)];
-    [longPressRecognizer setMinimumPressDuration:1];
-    [longPressRecognizer setDelegate:self];
-    [self.view addGestureRecognizer:longPressRecognizer];
+	//UILongPressGestureRecognizer *longPressRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self
+	//																									action:@selector(handleLongPress:)];
+    //[longPressRecognizer setMinimumPressDuration:1];
+	//longPressRecognizer.cancelsTouchesInView = NO;
+    //[longPressRecognizer setDelegate:self];
+    //[self.view addGestureRecognizer:longPressRecognizer];
 
 	// setup gesture to hide the menu - in this example we'll use a simple tap
-	UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
-	[tapRecognizer setDelegate:self];
-	[self.view addGestureRecognizer:tapRecognizer];
+	//UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+	//[tapRecognizer setDelegate:self];
+	//[self.view addGestureRecognizer:tapRecognizer];
 	
 }
 
@@ -56,6 +63,10 @@
 	{
 		[fanMenu hideMenu:gestureRecognizer.view];
 	}
+}
+
+- (void) didPressMenuItem:(UIButton*)menuItem {
+	NSLog(@"tap detected in VC - %i", menuItem.tag);
 }
 
 - (void)didReceiveMemoryWarning

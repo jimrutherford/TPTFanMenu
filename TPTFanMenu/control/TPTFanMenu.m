@@ -31,9 +31,9 @@
 
 
 
-- (id)init
+- (id)initWithFrame:(CGRect)frame
 {
-    self = [super init];
+    self = [super initWithFrame:frame];
     if (self) {
         [self drawPins];
 		
@@ -45,7 +45,7 @@
 		self.layer.shadowOpacity = 0.4f;
 		
 		self.clipsToBounds = NO;
-		
+		self.userInteractionEnabled = YES;
 		self.alpha = 0;
     }
     return self;
@@ -64,7 +64,6 @@
 		pin.frame = CGRectMake(0,0, pinImage.size.width, pinImage.size.height);
         [pin setImage:[menuItemImages objectAtIndex:i] forState:UIControlStateNormal];
 		[pin addTarget:self action:@selector(tapMenuItem:) forControlEvents:UIControlEventTouchUpInside];
-		[pin setSelected:NO];
 		pin.layer.position = CGPointMake(self.center.x, self.center.y);
 		pin.layer.transform = CATransform3DMakeScale(0.01, 0.01, 0.01);
 		pin.layer.anchorPoint = CGPointMake(0.5,1);
@@ -79,7 +78,6 @@
 
 - (void)tapMenuItem:(id)sender
 {
-	NSLog(@"tapped from inside control");
 	// fire off delegate method
 	SEL didPressMenuItemSelector = @selector(didPressMenuItem:);
 	if (self.delegate && [self.delegate respondsToSelector:didPressMenuItemSelector]) {
@@ -144,7 +142,7 @@
 	int index = [[anim valueForKey:@"TPTAnimationType"] intValue];
 	
 	if (isMenuGrowing) {
-		NSArray *keyframes = [self getKeyFramesForNumberOfMenuItems:[menuItemImages count] withIndex:index];
+		__block NSArray *keyframes = [self getKeyFramesForNumberOfMenuItems:[menuItemImages count] withIndex:index];
 		
 		if (keyframes != nil)
 		{
@@ -152,7 +150,10 @@
 			
 			[CATransaction begin];
 			[pin.layer addAnimation:[self rotationAnimationWithKeyFrames:keyframes] forKey:@"transform.rotation.z"];
-			[CATransaction setCompletionBlock:^(void){pin.layer.transform = CATransform3DMakeRotation(DEGREES_TO_RADIANS(180), 0, 0, 1.0f);}];
+			[CATransaction setCompletionBlock:^(void){
+				CGFloat lastAngle = [[keyframes lastObject] floatValue];
+				pin.layer.transform = CATransform3DMakeRotation(lastAngle, 0, 0, 1.0f);
+			}];
 			[CATransaction commit];
 		}
 	}
@@ -160,7 +161,6 @@
 	{
 		if (index == 99999)
 		{
-			NSLog(@"here");
 			self.alpha = 0;
 			isMenuVisible = NO;
 		}
@@ -218,7 +218,6 @@
 -(CAAnimationGroup*) collapsePinsWithIndex:(int)index
 {
 	NSArray *keyframes = [self getKeyFramesForNumberOfMenuItems:[menuItemImages count] withIndex:index];	
-	NSLog(@"collapsing");
 	CAAnimationGroup *rotationAnimation = [self rotationAnimationWithKeyFrames:keyframes];
 	
 	// we only need to be  notified of the animation ending from one pin

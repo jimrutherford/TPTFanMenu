@@ -32,17 +32,17 @@
 	NSArray *threeItems = @[[UIImage imageNamed:@"pin_star"], [UIImage imageNamed:@"pin_config"], [UIImage imageNamed:@"pin_tag"]];
 	NSArray *fourItems = @[[UIImage imageNamed:@"pin_tag"], [UIImage imageNamed:@"pin_dash"], [UIImage imageNamed:@"pin_star"], [UIImage imageNamed:@"pin_config"]];
 	
-	fourFanMenu = [[TPTFanMenu alloc] init];
+	fourFanMenu = [[TPTFanMenu alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
 	fourFanMenu.delegate = self;
 	[fourFanMenu setMenuItemImages:fourItems];
 	[self.view addSubview:fourFanMenu];
 
-	threeFanMenu = [[TPTFanMenu alloc] init];
+	threeFanMenu = [[TPTFanMenu alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
 	threeFanMenu.delegate = self;
 	[threeFanMenu setMenuItemImages:threeItems];
 	[self.view addSubview:threeFanMenu];
 	
-	twoFanMenu = [[TPTFanMenu alloc] init];
+	twoFanMenu = [[TPTFanMenu alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
 	twoFanMenu.delegate = self;
 	[twoFanMenu setMenuItemImages:twoItems];
 	[self.view addSubview:twoFanMenu];
@@ -50,6 +50,7 @@
 	// setup gesture to hide the menu - in this example we'll use a simple tap
 	UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
 	[tapRecognizer setDelegate:self];
+	//tapRecognizer.cancelsTouchesInView = NO;
 	[self.view addGestureRecognizer:tapRecognizer];
 	
 }
@@ -59,7 +60,6 @@
     CGPoint coords = [gestureRecognizer locationInView:gestureRecognizer.view];
 	
 	UIView *theView = [self.view hitTest:coords withEvent:nil];
-	NSLog(@"menu items - %i", theView.tag);
 
 	if (fourFanMenu.isMenuVisible)
 	{

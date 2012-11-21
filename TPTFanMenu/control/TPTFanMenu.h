@@ -13,7 +13,7 @@
 @interface TPTFanMenu : UIView
 
 @property (nonatomic) BOOL isMenuVisible;
-
+@property BOOL isMenuGrowing;
 @property (nonatomic) NSArray *menuItemImages;
 @property NSMutableArray * pins;
 @property (nonatomic, assign) id<TPTFanMenuDelegate> delegate;

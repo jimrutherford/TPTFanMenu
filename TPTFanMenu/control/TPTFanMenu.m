@@ -27,8 +27,9 @@
 @synthesize delegate;
 
 @synthesize isMenuVisible;
+@synthesize isMenuGrowing;
 
-bool isMenuGrowing;
+
 
 - (id)init
 {
@@ -161,7 +162,7 @@ bool isMenuGrowing;
 		{
 			NSLog(@"here");
 			self.alpha = 0;
-			
+			isMenuVisible = NO;
 		}
 		else
 		{
@@ -184,7 +185,7 @@ bool isMenuGrowing;
 
 - (void) hideMenu {
 	isMenuGrowing = NO;
-	isMenuVisible = NO;
+	
 	for (int i = 0; i < [menuItemImages count]; i++)
 	{
 		UIImageView * pin = [pins objectAtIndex:i];

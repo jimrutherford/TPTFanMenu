@@ -12,13 +12,13 @@
 
 @interface TPTFanMenu : UIView
 
-@property bool isMenuVisible;
+@property (nonatomic) BOOL isMenuVisible;
 
 @property (nonatomic) NSArray *menuItemImages;
 @property NSMutableArray * pins;
 @property (nonatomic, assign) id<TPTFanMenuDelegate> delegate;
 
-- (void) showMenu:(id)sender;
-- (void) hideMenu:(id)sender;
+- (void) showMenu;
+- (void) hideMenu;
 
 @end

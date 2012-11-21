@@ -30,9 +30,9 @@
 
 bool isMenuGrowing;
 
-- (id)initWithFrame:(CGRect)frame
+- (id)init
 {
-    self = [super initWithFrame:frame];
+    self = [super init];
     if (self) {
         [self drawPins];
 		
@@ -44,6 +44,8 @@ bool isMenuGrowing;
 		self.layer.shadowOpacity = 0.4f;
 		
 		self.clipsToBounds = NO;
+		
+		self.alpha = 0;
     }
     return self;
 }
@@ -76,13 +78,14 @@ bool isMenuGrowing;
 
 - (void)tapMenuItem:(id)sender
 {
+	NSLog(@"tapped from inside control");
 	// fire off delegate method
 	SEL didPressMenuItemSelector = @selector(didPressMenuItem:);
 	if (self.delegate && [self.delegate respondsToSelector:didPressMenuItemSelector]) {
 		[self.delegate didPressMenuItem:(UIButton*)sender];
 	}
 	
-	[self hideMenu:self];
+	[self hideMenu];
 }
 
 /*
@@ -96,8 +99,9 @@ bool isMenuGrowing;
 #pragma mark -
 #pragma mark Showing Menu
 
-- (void) showMenu:(id)sender {
+- (void) showMenu {
 	isMenuGrowing = YES;
+	self.alpha = 1;
 	
 	for (int i = 0; i < [menuItemImages count]; i++)
 	{
@@ -136,10 +140,9 @@ bool isMenuGrowing;
 
 -(void) animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
 {
+	int index = [[anim valueForKey:@"TPTAnimationType"] intValue];
 	
 	if (isMenuGrowing) {
-		int index = [[anim valueForKey:@"TPTAnimationType"] intValue];
-		
 		NSArray *keyframes = [self getKeyFramesForNumberOfMenuItems:[menuItemImages count] withIndex:index];
 		
 		if (keyframes != nil)
@@ -154,36 +157,107 @@ bool isMenuGrowing;
 	}
 	else
 	{
-		for (int i = 0; i < [menuItemImages count]; i++)
+		if (index == 99999)
 		{
-			UIImageView * pin = [pins objectAtIndex:i];
-			[pin.layer addAnimation:[self shrinkAnimationWithIndex:i] forKey:@"transform"];
+			NSLog(@"here");
+			self.alpha = 0;
+			
+		}
+		else
+		{
+			for (int i = 0; i < [menuItemImages count]; i++)
+			{
+				UIImageView * pin = [pins objectAtIndex:i];
+				[pin.layer addAnimation:[self shrinkAnimationWithIndex:i] forKey:@"transform"];
+			}
 		}
 	}
+	
+	
+	
 }
+
+
+
+#pragma mark -
+#pragma mark Hiding Menu
+
+- (void) hideMenu {
+	isMenuGrowing = NO;
+	isMenuVisible = NO;
+	for (int i = 0; i < [menuItemImages count]; i++)
+	{
+		UIImageView * pin = [pins objectAtIndex:i];
+		[pin.layer addAnimation:[self collapsePinsWithIndex:i] forKey:@"transform.rotation.z"];
+	}
+}
+
+- (CAAnimationGroup *)shrinkAnimationWithIndex:(int)index
+{
+	CGFloat startOffset = 0.1f;
+	CGFloat animDuration = 0.3f;
+	
+	CABasicAnimation *scaleAnimation = [CABasicAnimation animationWithKeyPath:@"transform"];
+    scaleAnimation.fromValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(1, 1, 1)];
+    scaleAnimation.toValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(.01, .01, .1)];
+	scaleAnimation.duration = animDuration + (abs(index - [menuItemImages count] + 1) * startOffset);
+	scaleAnimation.removedOnCompletion = NO;
+	scaleAnimation.fillMode = kCAFillModeForwards;
+	
+    CAAnimationGroup *animationgroup = [CAAnimationGroup animation];
+    animationgroup.animations = [NSArray arrayWithObjects:scaleAnimation, nil];
+    animationgroup.duration = animDuration + ([menuItemImages count] * startOffset);
+	animationgroup.removedOnCompletion = NO;
+	animationgroup.fillMode = kCAFillModeForwards;
+	if (index == 0) animationgroup.delegate = self;
+	[animationgroup setValue:[NSNumber numberWithInt:99999] forKey:@"TPTAnimationType"];
+	return animationgroup;
+}
+
+-(CAAnimationGroup*) collapsePinsWithIndex:(int)index
+{
+	NSArray *keyframes = [self getKeyFramesForNumberOfMenuItems:[menuItemImages count] withIndex:index];	
+	NSLog(@"collapsing");
+	CAAnimationGroup *rotationAnimation = [self rotationAnimationWithKeyFrames:keyframes];
+	
+	// we only need to be  notified of the animation ending from one pin
+	// as they all end at the same time.  We only need to respond to one of these.
+	// Need to find a better way to handle this
+	if (index == 0)
+	{
+		rotationAnimation.delegate = self;
+	}
+	
+	return rotationAnimation;
+}
+
+
+
+#pragma mark -
+#pragma mark Animation Helper Methods
 
 - (NSArray*) getKeyFramesForNumberOfMenuItems:(int)menuCount withIndex:(int)index
 {
 	NSArray * keyframes;
 	
 	if (menuCount == 4) {
-
-			switch (index) {
-				case 0:
-					keyframes = @[DEGREES_0, DEGREES_90];
-					break;
-				case 1:
-					keyframes = @[DEGREES_0, DEGREES_90, DEGREES_180];
-					break;
-				case 2:
-					keyframes = @[DEGREES_0, DEGREES_90, DEGREES_180, DEGREES_270];
-					break;
-				case 3:
-					keyframes = @[DEGREES_0, DEGREES_90, DEGREES_180, DEGREES_270, DEGREES_360];
-					break;
-				default:
-					break;
-			}
+		
+		switch (index) {
+			case 0:
+				keyframes = @[DEGREES_0, DEGREES_90];
+				break;
+			case 1:
+				keyframes = @[DEGREES_0, DEGREES_90, DEGREES_180];
+				break;
+			case 2:
+				keyframes = @[DEGREES_0, DEGREES_90, DEGREES_180, DEGREES_270];
+				break;
+			case 3:
+				keyframes = @[DEGREES_0, DEGREES_90, DEGREES_180, DEGREES_270, DEGREES_360];
+				break;
+			default:
+				break;
+		}
 	}
 	else if (menuCount == 3)
 	{
@@ -214,7 +288,7 @@ bool isMenuGrowing;
 				break;
 		}
 	}
-
+	
 	// if menu is closing let's reverse the array
 	if (isMenuGrowing)
 	{
@@ -223,68 +297,8 @@ bool isMenuGrowing;
 		NSArray* reversedArray = [[keyframes reverseObjectEnumerator] allObjects];
 		return reversedArray;
 	}
-	
-	
-	
 }
 
-
-#pragma mark -
-#pragma mark Hiding Menu
-
-- (void) hideMenu:(id)sender {
-	isMenuGrowing = NO;
-	
-	for (int i = 0; i < [menuItemImages count]; i++)
-	{
-		UIImageView * pin = [pins objectAtIndex:i];
-		[pin.layer addAnimation:[self collapsePinsWithIndex:i] forKey:@"transform.rotation.z"];
-	}
-	
-	isMenuVisible = NO;
-}
-
-- (CAAnimationGroup *)shrinkAnimationWithIndex:(int)index
-{
-	CGFloat startOffset = 0.1f;
-	CGFloat animDuration = 0.3f;
-	
-	CABasicAnimation *scaleAnimation = [CABasicAnimation animationWithKeyPath:@"transform"];
-    scaleAnimation.fromValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(1, 1, 1)];
-    scaleAnimation.toValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(.01, .01, .1)];
-	scaleAnimation.duration = animDuration + (abs(index - [menuItemImages count] + 1) * startOffset);
-	scaleAnimation.removedOnCompletion = NO;
-	scaleAnimation.fillMode = kCAFillModeForwards;
-	
-    CAAnimationGroup *animationgroup = [CAAnimationGroup animation];
-    animationgroup.animations = [NSArray arrayWithObjects:scaleAnimation, nil];
-    animationgroup.duration = animDuration + ([menuItemImages count] * startOffset);
-	animationgroup.removedOnCompletion = NO;
-	animationgroup.fillMode = kCAFillModeForwards;
-	return animationgroup;
-}
-
--(CAAnimationGroup*) collapsePinsWithIndex:(int)index
-{
-	NSArray *keyframes = [self getKeyFramesForNumberOfMenuItems:[menuItemImages count] withIndex:index];	
-	
-	CAAnimationGroup *rotationAnimation = [self rotationAnimationWithKeyFrames:keyframes];
-	
-	// we only need to be  notified of the animation ending from one pin
-	// as they all end at the same time.  We only need to respond to one of these.
-	// Need to find a better way to handle this
-	if (index == 0)
-	{
-		rotationAnimation.delegate = self;
-	}
-	
-	return rotationAnimation;
-}
-
-
-
-#pragma mark -
-#pragma mark Animation Helper Methods
 
 - (CAAnimationGroup*) rotationAnimationWithKeyFrames:(NSArray*)keyFrames
 {

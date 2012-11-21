@@ -15,29 +15,37 @@
 @implementation TPTViewController
 
 @synthesize backgroundImage;
-@synthesize fanMenu;
+@synthesize fourFanMenu;
+@synthesize threeFanMenu;
+@synthesize twoFanMenu;
+
+@synthesize twoMenuItems;
+@synthesize threeMenuItems;
+@synthesize fourMenuItems;
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	
-	NSArray *menuItems = @[[UIImage imageNamed:@"pin_1"], [UIImage imageNamed:@"pin_2"]];
-	//NSArray *menuItems = @[[UIImage imageNamed:@"pin_1"], [UIImage imageNamed:@"pin_2"], [UIImage imageNamed:@"pin_3"]];
-	//NSArray *menuItems = @[[UIImage imageNamed:@"pin_1"], [UIImage imageNamed:@"pin_2"], [UIImage imageNamed:@"pin_3"], [UIImage imageNamed:@"pin_4"]];
+	NSArray *twoItems = @[[UIImage imageNamed:@"pin_star"], [UIImage imageNamed:@"pin_config"]];
+	NSArray *threeItems = @[[UIImage imageNamed:@"pin_star"], [UIImage imageNamed:@"pin_config"], [UIImage imageNamed:@"pin_tag"]];
+	NSArray *fourItems = @[[UIImage imageNamed:@"pin_tag"], [UIImage imageNamed:@"pin_dash"], [UIImage imageNamed:@"pin_star"], [UIImage imageNamed:@"pin_config"]];
 	
-	fanMenu = [[TPTFanMenu alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
-	fanMenu.delegate = self;
-	[fanMenu setMenuItemImages:menuItems];
-	[self.view addSubview:fanMenu];
+	fourFanMenu = [[TPTFanMenu alloc] init];
+	fourFanMenu.delegate = self;
+	[fourFanMenu setMenuItemImages:fourItems];
+	[self.view addSubview:fourFanMenu];
 
+	threeFanMenu = [[TPTFanMenu alloc] init];
+	threeFanMenu.delegate = self;
+	[threeFanMenu setMenuItemImages:threeItems];
+	[self.view addSubview:threeFanMenu];
 	
-	// setup gesture to show the menu - in this example we'll use a longpress
-	UILongPressGestureRecognizer *longPressRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self
-																										action:@selector(handleLongPress:)];
-    [longPressRecognizer setMinimumPressDuration:1];
-	longPressRecognizer.cancelsTouchesInView = NO;
-    [longPressRecognizer setDelegate:self];
-    [self.view addGestureRecognizer:longPressRecognizer];
+	twoFanMenu = [[TPTFanMenu alloc] init];
+	twoFanMenu.delegate = self;
+	[twoFanMenu setMenuItemImages:twoItems];
+	[self.view addSubview:twoFanMenu];
 
 	// setup gesture to hide the menu - in this example we'll use a simple tap
 	UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
@@ -46,21 +54,46 @@
 	
 }
 
-- (void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer
-{
-    if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
-		CGPoint coords = [gestureRecognizer locationInView:gestureRecognizer.view];
-		[fanMenu setCenter:coords];
-		[fanMenu showMenu:gestureRecognizer.view];
-    }
-}
-
 - (void)handleTap:(UITapGestureRecognizer *)gestureRecognizer
 {
-    if (fanMenu.isMenuVisible)
+    CGPoint coords = [gestureRecognizer locationInView:gestureRecognizer.view];
+	
+	UIView *theView = [self.view hitTest:coords withEvent:nil];
+	NSLog(@"menu items - %i", theView.tag);
+
+	if (fourFanMenu.isMenuVisible)
 	{
-		[fanMenu hideMenu:gestureRecognizer.view];
+		[fourFanMenu hideMenu];
 	}
+	
+	if (twoFanMenu.isMenuVisible)
+	{
+		[twoFanMenu hideMenu];
+	}
+	
+	if (threeFanMenu.isMenuVisible)
+	{
+		[threeFanMenu hideMenu];
+	}
+	
+	if (!fourFanMenu.isMenuVisible && theView.tag == 44)
+	{
+		[fourFanMenu setCenter:coords];
+		[fourFanMenu showMenu];
+	}
+
+	if (!threeFanMenu.isMenuVisible && theView.tag == 33)
+	{
+		[threeFanMenu setCenter:coords];
+		[threeFanMenu showMenu];
+	}
+
+	if (!twoFanMenu.isMenuVisible && theView.tag == 22)
+	{
+		[twoFanMenu setCenter:coords];
+		[twoFanMenu showMenu];
+	}
+
 }
 
 - (void) didPressMenuItem:(UIButton*)menuItem {

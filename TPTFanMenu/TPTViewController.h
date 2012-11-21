@@ -12,8 +12,14 @@
 
 @interface TPTViewController : UIViewController<UIGestureRecognizerDelegate, TPTFanMenuDelegate>
 
-@property TPTFanMenu *fanMenu;
+@property (nonatomic) TPTFanMenu *fourFanMenu;
+@property (nonatomic) TPTFanMenu *threeFanMenu;
+@property (nonatomic) TPTFanMenu *twoFanMenu;
 
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImage;
+
+@property (weak, nonatomic) IBOutlet UIImageView *twoMenuItems;
+@property (weak, nonatomic) IBOutlet UIImageView *threeMenuItems;
+@property (weak, nonatomic) IBOutlet UIImageView *fourMenuItems;
 
 @end

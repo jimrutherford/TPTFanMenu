@@ -11,11 +11,12 @@
 		370660E51645CCBC002419F6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 370660E41645CCBC002419F6 /* Foundation.framework */; };
 		370660E71645CCBC002419F6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 370660E61645CCBC002419F6 /* CoreGraphics.framework */; };
 		370661151645D271002419F6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 370661141645D271002419F6 /* QuartzCore.framework */; };
-		37E2F7A31658759700A4CBCE /* pin_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37E2F79F1658759700A4CBCE /* pin_1@2x.png */; };
-		37E2F7A41658759700A4CBCE /* pin_2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37E2F7A01658759700A4CBCE /* pin_2@2x.png */; };
-		37E2F7A51658759700A4CBCE /* pin_3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37E2F7A11658759700A4CBCE /* pin_3@2x.png */; };
-		37E2F7A61658759700A4CBCE /* pin_4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37E2F7A21658759700A4CBCE /* pin_4@2x.png */; };
 		37E2F7B9165AA04B00A4CBCE /* TPTFanMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E2F7B6165A9FB000A4CBCE /* TPTFanMenu.m */; };
+		37E2F7CD165D4A3700A4CBCE /* pin_config@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37E2F7C8165D4A3700A4CBCE /* pin_config@2x.png */; };
+		37E2F7CE165D4A3700A4CBCE /* pin_dash@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37E2F7C9165D4A3700A4CBCE /* pin_dash@2x.png */; };
+		37E2F7CF165D4A3700A4CBCE /* pin_star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37E2F7CA165D4A3700A4CBCE /* pin_star@2x.png */; };
+		37E2F7D0165D4A3700A4CBCE /* pin_tag@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37E2F7CB165D4A3700A4CBCE /* pin_tag@2x.png */; };
+		37E2F7D1165D4A3700A4CBCE /* touch_target@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37E2F7CC165D4A3700A4CBCE /* touch_target@2x.png */; };
 		37F37DA91656AB0000449915 /* appBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 37F37D9D1656AB0000449915 /* appBackground.png */; };
 		37F37DAA1656AB0000449915 /* appBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37F37D9E1656AB0000449915 /* appBackground@2x.png */; };
 		37F37DAF1656AB0000449915 /* TPTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F37DA41656AB0000449915 /* TPTAppDelegate.m */; };
@@ -35,13 +36,14 @@
 		370660E41645CCBC002419F6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		370660E61645CCBC002419F6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		370661141645D271002419F6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		37E2F79F1658759700A4CBCE /* pin_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pin_1@2x.png"; path = "TPTFanMenu/pin_1@2x.png"; sourceTree = SOURCE_ROOT; };
-		37E2F7A01658759700A4CBCE /* pin_2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pin_2@2x.png"; path = "TPTFanMenu/pin_2@2x.png"; sourceTree = SOURCE_ROOT; };
-		37E2F7A11658759700A4CBCE /* pin_3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pin_3@2x.png"; path = "TPTFanMenu/pin_3@2x.png"; sourceTree = SOURCE_ROOT; };
-		37E2F7A21658759700A4CBCE /* pin_4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pin_4@2x.png"; path = "TPTFanMenu/pin_4@2x.png"; sourceTree = SOURCE_ROOT; };
 		37E2F7B5165A9FB000A4CBCE /* TPTFanMenu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TPTFanMenu.h; path = TPTFanMenu/control/TPTFanMenu.h; sourceTree = SOURCE_ROOT; };
 		37E2F7B6165A9FB000A4CBCE /* TPTFanMenu.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = TPTFanMenu.m; path = TPTFanMenu/control/TPTFanMenu.m; sourceTree = SOURCE_ROOT; };
 		37E2F7B7165A9FB000A4CBCE /* TPTFanMenuDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TPTFanMenuDelegate.h; path = TPTFanMenu/control/TPTFanMenuDelegate.h; sourceTree = SOURCE_ROOT; };
+		37E2F7C8165D4A3700A4CBCE /* pin_config@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pin_config@2x.png"; path = "TPTFanMenu/pin_config@2x.png"; sourceTree = SOURCE_ROOT; };
+		37E2F7C9165D4A3700A4CBCE /* pin_dash@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pin_dash@2x.png"; path = "TPTFanMenu/pin_dash@2x.png"; sourceTree = SOURCE_ROOT; };
+		37E2F7CA165D4A3700A4CBCE /* pin_star@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pin_star@2x.png"; path = "TPTFanMenu/pin_star@2x.png"; sourceTree = SOURCE_ROOT; };
+		37E2F7CB165D4A3700A4CBCE /* pin_tag@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pin_tag@2x.png"; path = "TPTFanMenu/pin_tag@2x.png"; sourceTree = SOURCE_ROOT; };
+		37E2F7CC165D4A3700A4CBCE /* touch_target@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "touch_target@2x.png"; path = "TPTFanMenu/touch_target@2x.png"; sourceTree = SOURCE_ROOT; };
 		37F37D9D1656AB0000449915 /* appBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = appBackground.png; path = TPTFanMenu/appBackground.png; sourceTree = SOURCE_ROOT; };
 		37F37D9E1656AB0000449915 /* appBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "appBackground@2x.png"; path = "TPTFanMenu/appBackground@2x.png"; sourceTree = SOURCE_ROOT; };
 		37F37DA31656AB0000449915 /* TPTAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TPTAppDelegate.h; path = TPTFanMenu/TPTAppDelegate.h; sourceTree = SOURCE_ROOT; };
@@ -134,10 +136,11 @@
 		3706610D1645CD5F002419F6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				37E2F79F1658759700A4CBCE /* pin_1@2x.png */,
-				37E2F7A01658759700A4CBCE /* pin_2@2x.png */,
-				37E2F7A11658759700A4CBCE /* pin_3@2x.png */,
-				37E2F7A21658759700A4CBCE /* pin_4@2x.png */,
+				37E2F7C8165D4A3700A4CBCE /* pin_config@2x.png */,
+				37E2F7C9165D4A3700A4CBCE /* pin_dash@2x.png */,
+				37E2F7CA165D4A3700A4CBCE /* pin_star@2x.png */,
+				37E2F7CB165D4A3700A4CBCE /* pin_tag@2x.png */,
+				37E2F7CC165D4A3700A4CBCE /* touch_target@2x.png */,
 				37F37DBD1656AC1A00449915 /* en.lproj */,
 				37F37D9D1656AB0000449915 /* appBackground.png */,
 				37F37D9E1656AB0000449915 /* appBackground@2x.png */,
@@ -225,10 +228,11 @@
 				37F37DBB1656ABD200449915 /* Default@2x.png in Resources */,
 				37F37DC21656AC1A00449915 /* InfoPlist.strings in Resources */,
 				37F37DC31656AC1A00449915 /* TPTViewController.xib in Resources */,
-				37E2F7A31658759700A4CBCE /* pin_1@2x.png in Resources */,
-				37E2F7A41658759700A4CBCE /* pin_2@2x.png in Resources */,
-				37E2F7A51658759700A4CBCE /* pin_3@2x.png in Resources */,
-				37E2F7A61658759700A4CBCE /* pin_4@2x.png in Resources */,
+				37E2F7CD165D4A3700A4CBCE /* pin_config@2x.png in Resources */,
+				37E2F7CE165D4A3700A4CBCE /* pin_dash@2x.png in Resources */,
+				37E2F7CF165D4A3700A4CBCE /* pin_star@2x.png in Resources */,
+				37E2F7D0165D4A3700A4CBCE /* pin_tag@2x.png in Resources */,
+				37E2F7D1165D4A3700A4CBCE /* touch_target@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

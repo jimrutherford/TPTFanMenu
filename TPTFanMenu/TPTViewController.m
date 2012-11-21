@@ -21,7 +21,9 @@
 {
     [super viewDidLoad];
 	
-	NSArray *menuItems = @[[UIImage imageNamed:@"pin_1"], [UIImage imageNamed:@"pin_2"], [UIImage imageNamed:@"pin_3"], [UIImage imageNamed:@"pin_4"]];
+	NSArray *menuItems = @[[UIImage imageNamed:@"pin_1"], [UIImage imageNamed:@"pin_2"]];
+	//NSArray *menuItems = @[[UIImage imageNamed:@"pin_1"], [UIImage imageNamed:@"pin_2"], [UIImage imageNamed:@"pin_3"]];
+	//NSArray *menuItems = @[[UIImage imageNamed:@"pin_1"], [UIImage imageNamed:@"pin_2"], [UIImage imageNamed:@"pin_3"], [UIImage imageNamed:@"pin_4"]];
 	
 	fanMenu = [[TPTFanMenu alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
 	fanMenu.delegate = self;

@@ -11,6 +11,15 @@
 
 #define DEGREES_TO_RADIANS( degrees ) ( ( degrees ) / 180.0 * M_PI )
 
+#define DEGREES_0   [NSNumber numberWithFloat:( 0 / 180.0 * M_PI )]
+#define DEGREES_45   [NSNumber numberWithFloat:( 45 / 180.0 * M_PI )]
+#define DEGREES_NEG_45   [NSNumber numberWithFloat:(( 45 / 180.0 * M_PI ) * -1)]
+#define DEGREES_90   [NSNumber numberWithFloat:( 90  / 180.0 * M_PI )]
+#define DEGREES_NEG_90   [NSNumber numberWithFloat:(( 90 / 180.0 * M_PI ) * -1)]
+#define DEGREES_180   [NSNumber numberWithFloat:( 180  / 180.0 * M_PI )]
+#define DEGREES_270   [NSNumber numberWithFloat:( 270  / 180.0 * M_PI )]
+#define DEGREES_360   [NSNumber numberWithFloat:( 360  / 180.0 * M_PI )]
+
 @implementation TPTFanMenu
 
 @synthesize pins;
@@ -61,7 +70,6 @@ bool isMenuGrowing;
 		
 		[pins addObject:pin];
 		[self addSubview:pin];
-
 	}
 	isMenuVisible = NO;
 }
@@ -132,53 +140,17 @@ bool isMenuGrowing;
 	if (isMenuGrowing) {
 		int index = [[anim valueForKey:@"TPTAnimationType"] intValue];
 		
-		NSArray *keyframes;
+		NSArray *keyframes = [self getKeyFramesForNumberOfMenuItems:[menuItemImages count] withIndex:index];
 		
-		if (index == 0)
+		if (keyframes != nil)
 		{
+			UIImageView * pin = [pins objectAtIndex:index];
 			
-			keyframes = [NSArray arrayWithObjects:
-								  [NSNumber numberWithFloat:DEGREES_TO_RADIANS(0)],
-								  [NSNumber numberWithFloat:DEGREES_TO_RADIANS(90)], nil];
+			[CATransaction begin];
+			[pin.layer addAnimation:[self rotationAnimationWithKeyFrames:keyframes] forKey:@"transform.rotation.z"];
+			[CATransaction setCompletionBlock:^(void){pin.layer.transform = CATransform3DMakeRotation(DEGREES_TO_RADIANS(180), 0, 0, 1.0f);}];
+			[CATransaction commit];
 		}
-		
-		else if (index == 1)
-		{
-			
-			keyframes = [NSArray arrayWithObjects:
-								  [NSNumber numberWithFloat:DEGREES_TO_RADIANS(0)],
-								  [NSNumber numberWithFloat:DEGREES_TO_RADIANS(90)],
-								  [NSNumber numberWithFloat:DEGREES_TO_RADIANS(180)], nil];
-		}
-		
-		
-		else if (index == 2)
-		{
-			
-			keyframes = [NSArray arrayWithObjects:
-								  [NSNumber numberWithFloat:DEGREES_TO_RADIANS(0)],
-								  [NSNumber numberWithFloat:DEGREES_TO_RADIANS(90)],
-								  [NSNumber numberWithFloat:DEGREES_TO_RADIANS(180)],
-								  [NSNumber numberWithFloat:DEGREES_TO_RADIANS(270)], nil];
-		}
-		
-		else if (index == 3)
-		{
-			
-			keyframes = [NSArray arrayWithObjects:
-								  [NSNumber numberWithFloat:DEGREES_TO_RADIANS(0)],
-								  [NSNumber numberWithFloat:DEGREES_TO_RADIANS(90)],
-								  [NSNumber numberWithFloat:DEGREES_TO_RADIANS(180)],
-								  [NSNumber numberWithFloat:DEGREES_TO_RADIANS(270)],
-								  [NSNumber numberWithFloat:DEGREES_TO_RADIANS(360)], nil];
-		}
-		
-		UIImageView * pin = [pins objectAtIndex:index];
-		
-		[CATransaction begin];
-		[pin.layer addAnimation:[self rotationAnimationWithKeyFrames:keyframes] forKey:@"transform.rotation.z"];
-		[CATransaction setCompletionBlock:^(void){pin.layer.transform = CATransform3DMakeRotation(DEGREES_TO_RADIANS(180), 0, 0, 1.0f);}];
-		[CATransaction commit];
 	}
 	else
 	{
@@ -189,6 +161,73 @@ bool isMenuGrowing;
 		}
 	}
 }
+
+- (NSArray*) getKeyFramesForNumberOfMenuItems:(int)menuCount withIndex:(int)index
+{
+	NSArray * keyframes;
+	
+	if (menuCount == 4) {
+
+			switch (index) {
+				case 0:
+					keyframes = @[DEGREES_0, DEGREES_90];
+					break;
+				case 1:
+					keyframes = @[DEGREES_0, DEGREES_90, DEGREES_180];
+					break;
+				case 2:
+					keyframes = @[DEGREES_0, DEGREES_90, DEGREES_180, DEGREES_270];
+					break;
+				case 3:
+					keyframes = @[DEGREES_0, DEGREES_90, DEGREES_180, DEGREES_270, DEGREES_360];
+					break;
+				default:
+					break;
+			}
+	}
+	else if (menuCount == 3)
+	{
+		switch (index) {
+			case 0:
+				keyframes = nil;
+				break;
+			case 1:
+				keyframes = @[DEGREES_0, DEGREES_90];
+				break;
+			case 2:
+				keyframes = @[DEGREES_0, DEGREES_NEG_90];
+				break;
+			default:
+				break;
+		}
+	}
+	else if (menuCount == 2)
+	{
+		switch (index) {
+			case 0:
+				keyframes = @[DEGREES_0, DEGREES_45];
+				break;
+			case 1:
+				keyframes = @[DEGREES_0, DEGREES_NEG_45 ];
+				break;
+			default:
+				break;
+		}
+	}
+
+	// if menu is closing let's reverse the array
+	if (isMenuGrowing)
+	{
+		return keyframes;
+	} else {
+		NSArray* reversedArray = [[keyframes reverseObjectEnumerator] allObjects];
+		return reversedArray;
+	}
+	
+	
+	
+}
+
 
 #pragma mark -
 #pragma mark Hiding Menu
@@ -227,41 +266,7 @@ bool isMenuGrowing;
 
 -(CAAnimationGroup*) collapsePinsWithIndex:(int)index
 {
-	NSArray *keyframes;
-	
-	if (index == 0)
-	{
-		
-		keyframes = [NSArray arrayWithObjects:
-							  [NSNumber numberWithFloat:DEGREES_TO_RADIANS(90)],
-							  [NSNumber numberWithFloat:DEGREES_TO_RADIANS(0)], nil];
-	}
-	else if (index == 1)
-	{
-		
-		keyframes = [NSArray arrayWithObjects:
-							  [NSNumber numberWithFloat:DEGREES_TO_RADIANS(180)],
-							  [NSNumber numberWithFloat:DEGREES_TO_RADIANS(90)],
-							  [NSNumber numberWithFloat:DEGREES_TO_RADIANS(0)], nil];
-	}
-	else if (index == 2)	{
-		
-		keyframes = [NSArray arrayWithObjects:
-							  [NSNumber numberWithFloat:DEGREES_TO_RADIANS(270)],
-							  [NSNumber numberWithFloat:DEGREES_TO_RADIANS(180)],
-							  [NSNumber numberWithFloat:DEGREES_TO_RADIANS(90)],
-							  [NSNumber numberWithFloat:DEGREES_TO_RADIANS(0)], nil];
-	}
-	else if (index == 3)
-	{
-		
-		keyframes = [NSArray arrayWithObjects:
-							  [NSNumber numberWithFloat:DEGREES_TO_RADIANS(360)],
-							  [NSNumber numberWithFloat:DEGREES_TO_RADIANS(270)],
-							  [NSNumber numberWithFloat:DEGREES_TO_RADIANS(180)],
-							  [NSNumber numberWithFloat:DEGREES_TO_RADIANS(90)],
-							  [NSNumber numberWithFloat:DEGREES_TO_RADIANS(0)], nil];
-	}
+	NSArray *keyframes = [self getKeyFramesForNumberOfMenuItems:[menuItemImages count] withIndex:index];	
 	
 	CAAnimationGroup *rotationAnimation = [self rotationAnimationWithKeyFrames:keyframes];
 	

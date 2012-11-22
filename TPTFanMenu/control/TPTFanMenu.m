@@ -155,6 +155,11 @@
 				pin.layer.transform = CATransform3DMakeRotation(lastAngle, 0, 0, 1.0f);
 			}];
 			[CATransaction commit];
+		} else {
+			// the pin doesn't need to animate, but we still need to set it's transform so
+			// the button interaction works
+			UIImageView * pin = [pins objectAtIndex:0];
+			pin.layer.transform = CATransform3DMakeRotation(0, 0, 0, 1.0f);
 		}
 	}
 	else

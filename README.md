@@ -5,7 +5,7 @@ A customizable popup menu that animates nicely as it displays and hides. The men
 
 See a [video demo on YouTube](http://www.youtube.com/watch?v=lCtQW48SWQM).
 
-![Screenshot](https://github.com/jimrutherford/TPTFanMenu/blob/master/screenshot.png)
+![Screenshot](http://braxio.com/img/tptFanMenuScreenshot.png)
 
 ## Using TPTFanMenu
 Coming soon...

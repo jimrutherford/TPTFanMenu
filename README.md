@@ -5,7 +5,7 @@ A customizable popup menu that animates nicely as it displays and hides. The men
 
 See a [video demo on YouTube](http://www.youtube.com/watch?v=lCtQW48SWQM).
 
-![Screenshot](http://braxio.com/img/tptFanMenuScreenshot.png)
+![Screenshot](http://www.taptonics.com/screenshots/tptFanMenu.png)
 
 ## Using TPTFanMenu
 Coming soon...

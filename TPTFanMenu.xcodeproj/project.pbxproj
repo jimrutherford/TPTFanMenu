@@ -17,6 +17,8 @@
 		37E2F7CF165D4A3700A4CBCE /* pin_star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37E2F7CA165D4A3700A4CBCE /* pin_star@2x.png */; };
 		37E2F7D0165D4A3700A4CBCE /* pin_tag@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37E2F7CB165D4A3700A4CBCE /* pin_tag@2x.png */; };
 		37E2F7D1165D4A3700A4CBCE /* touch_target@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37E2F7CC165D4A3700A4CBCE /* touch_target@2x.png */; };
+		37E2F7ED165DA15100A4CBCE /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37E2F7EC165DA15100A4CBCE /* Icon@2x.png */; };
+		37E2F7EF165DA16600A4CBCE /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 37E2F7EE165DA16600A4CBCE /* Icon.png */; };
 		37F37DA91656AB0000449915 /* appBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 37F37D9D1656AB0000449915 /* appBackground.png */; };
 		37F37DAA1656AB0000449915 /* appBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37F37D9E1656AB0000449915 /* appBackground@2x.png */; };
 		37F37DAF1656AB0000449915 /* TPTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F37DA41656AB0000449915 /* TPTAppDelegate.m */; };
@@ -44,6 +46,8 @@
 		37E2F7CA165D4A3700A4CBCE /* pin_star@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pin_star@2x.png"; path = "TPTFanMenu/pin_star@2x.png"; sourceTree = SOURCE_ROOT; };
 		37E2F7CB165D4A3700A4CBCE /* pin_tag@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pin_tag@2x.png"; path = "TPTFanMenu/pin_tag@2x.png"; sourceTree = SOURCE_ROOT; };
 		37E2F7CC165D4A3700A4CBCE /* touch_target@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "touch_target@2x.png"; path = "TPTFanMenu/touch_target@2x.png"; sourceTree = SOURCE_ROOT; };
+		37E2F7EC165DA15100A4CBCE /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		37E2F7EE165DA16600A4CBCE /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		37F37D9D1656AB0000449915 /* appBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = appBackground.png; path = TPTFanMenu/appBackground.png; sourceTree = SOURCE_ROOT; };
 		37F37D9E1656AB0000449915 /* appBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "appBackground@2x.png"; path = "TPTFanMenu/appBackground@2x.png"; sourceTree = SOURCE_ROOT; };
 		37F37DA31656AB0000449915 /* TPTAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TPTAppDelegate.h; path = TPTFanMenu/TPTAppDelegate.h; sourceTree = SOURCE_ROOT; };
@@ -79,6 +83,8 @@
 		370660D31645CCBC002419F6 = {
 			isa = PBXGroup;
 			children = (
+				37E2F7EE165DA16600A4CBCE /* Icon.png */,
+				37E2F7EC165DA15100A4CBCE /* Icon@2x.png */,
 				370660E81645CCBC002419F6 /* TPTFanMenu */,
 				370660E11645CCBC002419F6 /* Frameworks */,
 				370660DF1645CCBC002419F6 /* Products */,
@@ -136,6 +142,7 @@
 		3706610D1645CD5F002419F6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				37E2F7D5165DA07300A4CBCE /* appIcons */,
 				37E2F7C8165D4A3700A4CBCE /* pin_config@2x.png */,
 				37E2F7C9165D4A3700A4CBCE /* pin_dash@2x.png */,
 				37E2F7CA165D4A3700A4CBCE /* pin_star@2x.png */,
@@ -156,6 +163,13 @@
 				37E2F7B7165A9FB000A4CBCE /* TPTFanMenuDelegate.h */,
 			);
 			name = Control;
+			sourceTree = "<group>";
+		};
+		37E2F7D5165DA07300A4CBCE /* appIcons */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = appIcons;
 			sourceTree = "<group>";
 		};
 		37F37DBD1656AC1A00449915 /* en.lproj */ = {
@@ -233,6 +247,8 @@
 				37E2F7CF165D4A3700A4CBCE /* pin_star@2x.png in Resources */,
 				37E2F7D0165D4A3700A4CBCE /* pin_tag@2x.png in Resources */,
 				37E2F7D1165D4A3700A4CBCE /* touch_target@2x.png in Resources */,
+				37E2F7ED165DA15100A4CBCE /* Icon@2x.png in Resources */,
+				37E2F7EF165DA16600A4CBCE /* Icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

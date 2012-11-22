@@ -7,12 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import	"TPTFanMenu.h"
+#import "TPTFanMenuDelegate.h"
 
-@interface TPTViewController : UIViewController
+@interface TPTViewController : UIViewController<UIGestureRecognizerDelegate, TPTFanMenuDelegate>
 
-
-@property UIImageView *pin_1;
+@property (nonatomic) TPTFanMenu *fourFanMenu;
+@property (nonatomic) TPTFanMenu *threeFanMenu;
+@property (nonatomic) TPTFanMenu *twoFanMenu;
 
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImage;
+
+@property (weak, nonatomic) IBOutlet UIImageView *twoMenuItems;
+@property (weak, nonatomic) IBOutlet UIImageView *threeMenuItems;
+@property (weak, nonatomic) IBOutlet UIImageView *fourMenuItems;
 
 @end

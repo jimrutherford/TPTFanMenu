@@ -7,7 +7,6 @@
 //
 
 #import "TPTViewController.h"
-#import <QuartzCore/QuartzCore.h>
 
 @interface TPTViewController ()
 
@@ -15,50 +14,96 @@
 
 @implementation TPTViewController
 
-@synthesize pin_1;
+@synthesize backgroundImage;
+@synthesize fourFanMenu;
+@synthesize threeFanMenu;
+@synthesize twoFanMenu;
+
+@synthesize twoMenuItems;
+@synthesize threeMenuItems;
+@synthesize fourMenuItems;
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+	
+	NSArray *twoItems = @[[UIImage imageNamed:@"pin_star"], [UIImage imageNamed:@"pin_config"]];
+	NSArray *threeItems = @[[UIImage imageNamed:@"pin_star"], [UIImage imageNamed:@"pin_config"], [UIImage imageNamed:@"pin_tag"]];
+	NSArray *fourItems = @[[UIImage imageNamed:@"pin_tag"], [UIImage imageNamed:@"pin_dash"], [UIImage imageNamed:@"pin_star"], [UIImage imageNamed:@"pin_config"]];
+	
+	fourFanMenu = [[TPTFanMenu alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
+	fourFanMenu.delegate = self;
+	[fourFanMenu setMenuItemImages:fourItems];
+	[self.view addSubview:fourFanMenu];
 
+	threeFanMenu = [[TPTFanMenu alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
+	threeFanMenu.delegate = self;
+	[threeFanMenu setMenuItemImages:threeItems];
+	[self.view addSubview:threeFanMenu];
+	
+	twoFanMenu = [[TPTFanMenu alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
+	twoFanMenu.delegate = self;
+	[twoFanMenu setMenuItemImages:twoItems];
+	[self.view addSubview:twoFanMenu];
 
-    pin_1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pin_1"]];
-    [self.view addSubview:pin_1];
-    pin_1.layer.position = CGPointMake(self.view.center.x, self.view.center.y);
-    pin_1.layer.anchorPoint = CGPointMake(0.5,1);
-    pin_1.layer.opacity = 0;
+	// setup gesture to hide the menu - in this example we'll use a simple tap
+	UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+	[tapRecognizer setDelegate:self];
+	//tapRecognizer.cancelsTouchesInView = NO;
+	[self.view addGestureRecognizer:tapRecognizer];
+	
+}
 
+- (void)handleTap:(UITapGestureRecognizer *)gestureRecognizer
+{
+    CGPoint coords = [gestureRecognizer locationInView:gestureRecognizer.view];
+	
+	UIView *theView = [self.view hitTest:coords withEvent:nil];
+
+	if (fourFanMenu.isMenuVisible)
+	{
+		[fourFanMenu hideMenu];
+	}
+	
+	if (twoFanMenu.isMenuVisible)
+	{
+		[twoFanMenu hideMenu];
+	}
+	
+	if (threeFanMenu.isMenuVisible)
+	{
+		[threeFanMenu hideMenu];
+	}
+	
+	if (!fourFanMenu.isMenuVisible && theView.tag == 44)
+	{
+		[fourFanMenu setCenter:coords];
+		[fourFanMenu showMenu];
+	}
+
+	if (!threeFanMenu.isMenuVisible && theView.tag == 33)
+	{
+		[threeFanMenu setCenter:coords];
+		[threeFanMenu showMenu];
+	}
+
+	if (!twoFanMenu.isMenuVisible && theView.tag == 22)
+	{
+		[twoFanMenu setCenter:coords];
+		[twoFanMenu showMenu];
+	}
+
+}
+
+- (void) didPressMenuItem:(UIButton*)menuItem {
+	NSLog(@"tap detected in VC - %i", menuItem.tag);
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-
-
-- (IBAction)goButton:(id)sender {
-
-    pin_1.layer.opacity = 1;
-    [pin_1.layer addAnimation:[self shrinkAnimation] forKey:@"idunno"];
-
-}
-
-
-- (CAAnimationGroup *)shrinkAnimation
-{
-
-    CABasicAnimation *scaleAnimation = [CABasicAnimation animationWithKeyPath:@"transform"];
-    scaleAnimation.fromValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(.01, .01, .1)];
-    scaleAnimation.toValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(1, 1, 1)];
-
-    CAAnimationGroup *animationgroup = [CAAnimationGroup animation];
-    animationgroup.animations = [NSArray arrayWithObjects:scaleAnimation, nil];
-    animationgroup.duration = 0.2f;
-    animationgroup.fillMode = kCAFillModeForwards;
-
-    return animationgroup;
 }
 
 
